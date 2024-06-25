@@ -7,13 +7,14 @@ type Champ = {
 type StateAxios = {
   isLoading: boolean;
   data?: any;
+  message?: string | null,
   error?: any;
 };
 
 type FormPokemon = {
-  picture? : Champ,
-  name : Champ,
-  hp : Champ,
-  cp : Champ,
-  types : Champ
+  picture?: Champ,
+  name: Champ,
+  hp: Champ,
+  cp: Champ,
+  types: Champ
 }
