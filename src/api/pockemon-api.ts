@@ -1,32 +1,36 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useToasts } from "../hooks/useToasts";
 
 //GET POKEMON
-export const useAxiosGetPokemons = (url: string) => {
+export const useAxiosGetPokemons = () => {
   const [stateAxios, setStateAxios] = useState<StateAxios>({
     isLoading: true,
     data: null,
     error: null,
   });
 
-  const getPokemons = async () => {
-    await axios
+  const getPokemons = (url: string) => {
+    axios
       .get(url)
       .then((response) => {
-        setStateAxios({ ...stateAxios, isLoading: false, data: response.data });
+        setStateAxios({
+          isLoading: false,
+          data: response.data,
+          error: null,
+        });
       })
       .catch((error) => {
-        setStateAxios({ ...stateAxios, isLoading: false, error: error });
+        setStateAxios({
+          isLoading: false,
+          data: null,
+          error: error,
+        });
       });
   };
 
-  useEffect(() => {
-    getPokemons();
-  });
-
-  return { stateAxios };
+  return { stateAxios, getPokemons };
 };
 
 
