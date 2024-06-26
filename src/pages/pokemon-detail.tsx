@@ -3,11 +3,11 @@ import { NavLink, useParams } from "react-router-dom";
 import { h2 } from "../tools/tailwind";
 import Pokemon from "../models/pokemon";
 import PokemonService from "../tools/pokemon-service";
-import { useAxiosDeletePokemon } from "../api/pockemon-api";
 import Loading from "../components/loading";
 import PageError from "./page-error";
 import { useAxiosGetPokemons } from "../api/use-get-pokemons";
 import { BASE_URL } from "../tools/base-url";
+import { useAxiosDeletePokemons } from "../api/use-delete-pokemons";
 
 
 const PokemonDetail: FunctionComponent = () => {
@@ -22,7 +22,7 @@ const PokemonDetail: FunctionComponent = () => {
         setPokemon(stateAxios.data?.data)
     }, [stateAxios])
 
-    const { stateAxiosDelete, deletePokemon } = useAxiosDeletePokemon()
+    const { stateAxiosDelete, deletePokemon } = useAxiosDeletePokemons()
     const handleClick = () => {
         if (pokemon) deletePokemon(pokemon.id)
     }
