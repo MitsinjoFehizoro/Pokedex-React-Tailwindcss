@@ -5,7 +5,7 @@ import Loading from "../components/loading";
 import PageError from "./page-error";
 import Pokemon from "../models/pokemon";
 import {  } from "../api/pockemon-api";
-import { useAxiosGetPokemons } from "../api/api-get-pokemons";
+import { useAxiosGetPokemons } from "../api/use-get-pokemons";
 import { BASE_URL } from "../tools/base-url";
 
 const PokemonList: FunctionComponent = () => {

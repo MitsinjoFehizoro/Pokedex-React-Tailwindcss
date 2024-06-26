@@ -11,7 +11,7 @@ import {
 import PokemonService from "../tools/pokemon-service";
 import InputCheckBox from "./input-check-box";
 import ButtonSubmit from "./button.";
-import { useAxiosPokemon } from "../api/pockemon-api";
+import { useAxiosCreateUpdatePokemons } from "../api/use-create-update-pokemons";
 
 type Props = {
     pokemon?: Pokemon;
@@ -49,7 +49,7 @@ const PokemonForm: FunctionComponent<Props> = ({ pokemon }) => {
         validateCheckbox(e, formPokemon, setFormPokemon)
     };
 
-    const { stateAxios, createPokemon, updatePokemon } = useAxiosPokemon(formPokemon)
+    const { stateAxios, createPokemon, updatePokemon } = useAxiosCreateUpdatePokemons(formPokemon)
     const handleOnSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
         e.preventDefault()
         if (pokemon)

@@ -6,7 +6,7 @@ import PokemonService from "../tools/pokemon-service";
 import { useAxiosDeletePokemon } from "../api/pockemon-api";
 import Loading from "../components/loading";
 import PageError from "./page-error";
-import { useAxiosGetPokemons } from "../api/api-get-pokemons";
+import { useAxiosGetPokemons } from "../api/use-get-pokemons";
 import { BASE_URL } from "../tools/base-url";
 
 
