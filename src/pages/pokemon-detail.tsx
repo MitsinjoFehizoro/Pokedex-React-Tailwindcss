@@ -82,7 +82,6 @@ const PokemonDetail: FunctionComponent = () => {
                                             }
                                         </td>
                                     </tr>
-                                    <LigneTable col_1='Date de création' col_2='date de création' />
                                 </table>
                             </div>
                             <NavLink to='/' className='ml-6 mt-2 bg-sky-600/20 w-36 text-center text-slate-300 block p-1 rounded-md hover:bg-sky-500/40 transition'>

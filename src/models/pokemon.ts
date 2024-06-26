@@ -17,6 +17,8 @@ export default class Pokemon {
     this.id = id;
     this.hp = hp;
     this.cp = cp;
-    (this.name = name), (this.picture = picture), (this.types = types);
+    this.name = name
+    this.picture = picture
+    this.types = types
   }
 }

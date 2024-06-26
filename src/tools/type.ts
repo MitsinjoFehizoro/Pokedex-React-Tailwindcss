@@ -7,7 +7,6 @@ type Champ = {
 type StateAxios = {
   isLoading: boolean;
   data?: any;
-  message?: string | null,
   error?: any;
 };
 
@@ -17,4 +16,10 @@ type FormPokemon = {
   hp: Champ,
   cp: Champ,
   types: Champ
+}
+
+type FormUser = {
+  pseudo: Champ,
+  password: Champ,
+  confirmPassword: Champ
 }
