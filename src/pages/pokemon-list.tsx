@@ -4,20 +4,21 @@ import PokemonCard from "../components/pokemon-card";
 import Loading from "../components/loading";
 import PageError from "./page-error";
 import Pokemon from "../models/pokemon";
-import { useAxiosGetPokemons } from "../api/pockemon-api";
+import {  } from "../api/pockemon-api";
+import { useAxiosGetPokemons } from "../api/api-get-pokemons";
+import { BASE_URL } from "../tools/base-url";
 
 const PokemonList: FunctionComponent = () => {
     const { stateAxios, getPokemons } = useAxiosGetPokemons()
     const [pokemons, setPokemons] = useState<Pokemon[]>()
-    const [a, setA] = useState<number>(0)
+   
 
 
     useEffect(() => {
-        getPokemons('http://localhost:5174/pokemons/')
+        getPokemons(`${BASE_URL}pokemons`)
     }, []);
     useEffect(() => {
         setPokemons(stateAxios.data?.data)
-        setA(a + 1)
     }, [stateAxios])
 
     return (
@@ -35,7 +36,6 @@ const PokemonList: FunctionComponent = () => {
             {
                 pokemons && (
                     <div>
-                        {a}
                         <div className="text-slate-100">
                             <h2 className={h2}>Listes des pokémons : </h2>
                         </div>

@@ -3,38 +3,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useToasts } from "../hooks/useToasts";
 
-//GET POKEMON
-export const useAxiosGetPokemons = () => {
-  const [stateAxios, setStateAxios] = useState<StateAxios>({
-    isLoading: true,
-    data: null,
-    error: null,
-  });
-
-  const getPokemons = (url: string) => {
-    axios
-      .get(url)
-      .then((response) => {
-        setStateAxios({
-          isLoading: false,
-          data: response.data,
-          error: null,
-        });
-      })
-      .catch((error) => {
-        setStateAxios({
-          isLoading: false,
-          data: null,
-          error: error,
-        });
-      });
-  };
-
-  return { stateAxios, getPokemons };
-};
-
-
-
 //CREATE et DELETE POKEMON
 export const useAxiosPokemon = (formPokemon: FormPokemon) => {
   const [stateAxios, setStateAxios] = useState<StateAxios>({
@@ -81,10 +49,8 @@ export const useAxiosPokemon = (formPokemon: FormPokemon) => {
       });
   }
 
-
   return { stateAxios, createPokemon, updatePokemon };
 };
-
 
 //GET POKEMON
 export const useAxiosDeletePokemon = () => {

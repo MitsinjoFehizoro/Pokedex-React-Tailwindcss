@@ -3,18 +3,24 @@ import { NavLink, useParams } from "react-router-dom";
 import { h2 } from "../tools/tailwind";
 import Pokemon from "../models/pokemon";
 import PokemonService from "../tools/pokemon-service";
-import { useAxiosDeletePokemon, useAxiosGetPokemons } from "../api/pockemon-api";
+import { useAxiosDeletePokemon } from "../api/pockemon-api";
 import Loading from "../components/loading";
 import PageError from "./page-error";
+import { useAxiosGetPokemons } from "../api/api-get-pokemons";
+import { BASE_URL } from "../tools/base-url";
 
 
 const PokemonDetail: FunctionComponent = () => {
     const { id } = useParams<{ id: string }>()
-    const { stateAxios } = useAxiosGetPokemons(`http://localhost:5174/pokemons/${id}`)
+    const { stateAxios, getPokemons } = useAxiosGetPokemons()
     const [pokemon, setPokemon] = useState<Pokemon>()
+
     useEffect(() => {
-        setPokemon(stateAxios.data)
-    }, [stateAxios.data])
+        getPokemons(`${BASE_URL}pokemons/${id}`)
+    }, [])
+    useEffect(() => {
+        setPokemon(stateAxios.data?.data)
+    }, [stateAxios])
 
     const { stateAxiosDelete, deletePokemon } = useAxiosDeletePokemon()
     const handleClick = () => {

@@ -1,17 +1,25 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, useEffect, useState } from "react";
 import { h2 } from "../tools/tailwind";
 import PokemonForm from "../components/pokemon-form";
-
-import { useAxiosGetPokemons } from "../api/pockemon-api";
 import Pokemon from "../models/pokemon";
 import Loading from "../components/loading";
 import PageError from "./page-error";
 import { useParams } from "react-router-dom";
+import { useAxiosGetPokemons } from "../api/api-get-pokemons";
+import { BASE_URL } from "../tools/base-url";
 
 const UpdatePokemon: FunctionComponent = () => {
     const { id } = useParams()
-    const { stateAxios } = useAxiosGetPokemons(`http://localhost:5174/pokemons/${id}`)
-    const pokemon: Pokemon = stateAxios.data
+    const { stateAxios, getPokemons } = useAxiosGetPokemons()
+    const [pokemon, setPokemon] = useState<Pokemon>()
+
+    useEffect(() => {
+        getPokemons(`${BASE_URL}pokemons/${id}`)
+    }, [])
+    useEffect(() => {
+        setPokemon(stateAxios.data?.data)
+    }, [stateAxios])
+
     return (
         <div className='mx-auto'>
             <div className="max-w-xl mx-auto">
