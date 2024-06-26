@@ -5,9 +5,9 @@ import Pokemon from "../models/pokemon";
 import PokemonService from "../tools/pokemon-service";
 import Loading from "../components/loading";
 import PageError from "./page-error";
-import { useAxiosGetPokemons } from "../api/use-get-pokemons";
 import { BASE_URL } from "../tools/base-url";
-import { useAxiosDeletePokemons } from "../api/use-delete-pokemons";
+import { useAxiosDeletePokemons } from "../api/pokemons-api/use-delete-pokemons";
+import { useAxiosGetPokemons } from "../api/pokemons-api/use-get-pokemons";
 
 
 const PokemonDetail: FunctionComponent = () => {

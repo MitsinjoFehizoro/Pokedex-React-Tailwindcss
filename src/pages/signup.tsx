@@ -1,8 +1,9 @@
-import React, { FunctionComponent, useEffect, useState } from "react";
+import React, { FunctionComponent, useState } from "react";
 import { h2 } from "../tools/tailwind";
 import InputForm from "../components/input-form";
 import { isShowButton, validationFormUser } from "../tools/validation-form-user";
 import ButtonSubmit from "../components/button.";
+import { useAxiosCreateUsers } from "../api/users-api/use-create-users";
 
 const Signup: FunctionComponent = () => {
     const [formUser, setFormUser] = useState<FormUser>({
@@ -14,13 +15,23 @@ const Signup: FunctionComponent = () => {
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         validationFormUser(e, formUser, setFormUser)
     }
+
+    const { stateAxios, createUser } = useAxiosCreateUsers()
+    const onSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        createUser(formUser)
+    }
+
     return (
         <div className='mx-auto'>
             <div className="max-w-lg mx-auto">
                 <h2 className={h2}>Créer un compte : </h2>
                 <div className="mx-2 md:mx-0 pb-5 bg-slate-800 rounded-md ring-1 ring-gray-50/20">
                     <div className="mx-4 pt-6">
-                        <form action="">
+                        <form onSubmit={onSubmit} >
+                            {
+                                stateAxios.error && <span className='text-left pt-1 text-xs block text-red-400'>{stateAxios.error}</span>
+                            }
                             <InputForm
                                 label="Pseudo :"
                                 type="text"
@@ -51,7 +62,7 @@ const Signup: FunctionComponent = () => {
                             <div className="mt-6">
                                 <ButtonSubmit
                                     isShowButton={isShowButton(formUser)}
-                                    isLoading={false}
+                                    isLoading={stateAxios.isLoading}
                                     text="S'inscrire"
                                 />
                             </div>

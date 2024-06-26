@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { useToasts } from "../hooks/useToasts";
+import { useToasts } from "../../hooks/useToasts";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { BASE_URL } from "../tools/base-url";
+import { BASE_URL } from "../../tools/base-url";
 
 export const useAxiosDeletePokemons = () => {
     const [stateAxiosDelete, setStateAxiosDelete] = useState<StateAxios>({
@@ -16,7 +16,8 @@ export const useAxiosDeletePokemons = () => {
 
     const deletePokemon = async (id: number) => {
         try {
-            await axios.delete(`${BASE_URL}pokemons/${id}`)
+            const response = await axios.delete(`${BASE_URL}pokemons/${id}`)
+            setStateAxiosDelete({ isLoading: false, data: response.data, error: null });
             redirect('/')
             pushToast("Suppression avec succès.");
         } catch (error) {

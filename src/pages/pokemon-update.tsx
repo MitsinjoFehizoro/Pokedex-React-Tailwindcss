@@ -5,8 +5,8 @@ import Pokemon from "../models/pokemon";
 import Loading from "../components/loading";
 import PageError from "./page-error";
 import { useParams } from "react-router-dom";
-import { useAxiosGetPokemons } from "../api/use-get-pokemons";
 import { BASE_URL } from "../tools/base-url";
+import { useAxiosGetPokemons } from "../api/pokemons-api/use-get-pokemons";
 
 const UpdatePokemon: FunctionComponent = () => {
     const { id } = useParams()

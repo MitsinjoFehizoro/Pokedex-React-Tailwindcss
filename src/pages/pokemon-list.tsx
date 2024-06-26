@@ -4,8 +4,8 @@ import PokemonCard from "../components/pokemon-card";
 import Loading from "../components/loading";
 import PageError from "./page-error";
 import Pokemon from "../models/pokemon";
-import { useAxiosGetPokemons } from "../api/use-get-pokemons";
 import { BASE_URL } from "../tools/base-url";
+import { useAxiosGetPokemons } from "../api/pokemons-api/use-get-pokemons";
 
 const PokemonList: FunctionComponent = () => {
     const { stateAxios, getPokemons } = useAxiosGetPokemons()

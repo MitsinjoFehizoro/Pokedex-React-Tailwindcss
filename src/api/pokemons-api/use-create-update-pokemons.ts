@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { useToasts } from "../hooks/useToasts";
+import { useToasts } from "../../hooks/useToasts";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { BASE_URL } from "../tools/base-url";
+import { BASE_URL } from "../../tools/base-url";
 
 export const useAxiosCreateUpdatePokemons = (formPokemon: FormPokemon) => {
     const [stateAxios, setStateAxios] = useState<StateAxios>({
@@ -24,7 +24,8 @@ export const useAxiosCreateUpdatePokemons = (formPokemon: FormPokemon) => {
 
     const createPokemon = async () => {
         try {
-            await axios.post(`${BASE_URL}pokemons`, pokemon)
+            const response = await axios.post(`${BASE_URL}pokemons`, pokemon)
+            setStateAxios({ isLoading: false, data: response.data, error: null });
             redirect('/')
             pushToast("Ajout avec succès.");
         } catch (error) {

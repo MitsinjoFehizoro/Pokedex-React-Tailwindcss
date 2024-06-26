@@ -12,17 +12,9 @@ export const useAxiosGetPokemons = () => {
   const getPokemons = async (url: string) => {
     try {
       const response = await axios.get(url)
-      setStateAxios({
-        isLoading: false,
-        data: response.data,
-        error: null,
-      });
+      setStateAxios({ isLoading: false, data: response.data, error: null });
     } catch (error) {
-      setStateAxios({
-        isLoading: false,
-        data: null,
-        error: error,
-      });
+      setStateAxios({ isLoading: false, data: null, error: error });
     }
   }
   return { stateAxios, getPokemons };
