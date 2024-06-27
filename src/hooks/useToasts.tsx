@@ -4,20 +4,24 @@ import Toast from "../components/Toast";
 const ToastContext = createContext(
     {
         toast: null,
-        setToast: () => { },
+        setToast: (t: string | null) => { },
+        isError: false,
+        setIsError: (b: boolean) => { }
     }
 )
 
 export const useToasts = () => {
-    const { toast, setToast } = useContext(ToastContext)
-    const pushToast = (toast : string | null) =>{
+    const { toast, setToast, isError, setIsError } = useContext(ToastContext)
+    const pushToast = (toast: string | null, isError: boolean = false) => {
         setToast(toast)
+        setIsError(isError)
         setTimeout(() => {
             setToast(null)
         }, 3000);
     }
     return {
         toast,
+        isError,
         pushToast
     }
 }
@@ -25,8 +29,9 @@ export const useToasts = () => {
 //ity no methode fiable par rapport @ le ao @ React_Pokemons
 export const ToastContextProvider: FunctionComponent = ({ children }: PropsWithChildren) => {
     const [toast, setToast] = useState<string | null>(null)
+    const [isError, setIsError] = useState<boolean>(false)
     return (
-        <ToastContext.Provider value={{ toast, setToast }}>
+        <ToastContext.Provider value={{ toast, setToast, isError, setIsError }}>
             <Toast />
             {children}
         </ToastContext.Provider>

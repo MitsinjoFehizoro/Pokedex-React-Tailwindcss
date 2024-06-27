@@ -28,10 +28,7 @@ const Signup: FunctionComponent = () => {
                 <h2 className={h2}>Créer un compte : </h2>
                 <div className="mx-2 md:mx-0 pb-5 bg-slate-800 rounded-md ring-1 ring-gray-50/20">
                     <div className="mx-4 pt-6">
-                        <form onSubmit={onSubmit} >
-                            {
-                                stateAxios.error && <span className='text-left pt-1 text-xs block text-red-400'>{stateAxios.error}</span>
-                            }
+                        <form onSubmit={onSubmit} > 
                             <InputForm
                                 label="Pseudo :"
                                 type="text"

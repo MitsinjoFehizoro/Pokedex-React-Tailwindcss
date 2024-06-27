@@ -21,7 +21,11 @@ export const useAxiosDeletePokemons = () => {
             redirect('/')
             pushToast("Suppression avec succès.");
         } catch (error) {
-            setStateAxiosDelete({ data: null, isLoading: false, error: error });
+            if (axios.isAxiosError(error)) {
+                pushToast(error.response?.data.message, true)
+                setStateAxiosDelete({ data: null, isLoading: false, error: error.response?.data.message });
+            } else
+                setStateAxiosDelete({ data: null, isLoading: false, error: error });
         }
     }
 

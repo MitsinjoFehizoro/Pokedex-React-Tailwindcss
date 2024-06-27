@@ -25,7 +25,11 @@ export const useAxiosCreateUsers = () => {
             redirect('/')
             pushToast('Votre compte a été créé.')
         } catch (error) {
-            setStateAxios({ data: null, isLoading: false, error: error.response.data.message });
+            if (axios.isAxiosError(error)) {
+                pushToast(error.response?.data.message, true)
+                setStateAxios({ data: null, isLoading: false, error: error.response?.data.message });
+            } else
+                setStateAxios({ data: null, isLoading: false, error: error });
         }
     }
 

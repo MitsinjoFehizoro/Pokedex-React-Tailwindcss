@@ -29,7 +29,11 @@ export const useAxiosCreateUpdatePokemons = (formPokemon: FormPokemon) => {
             redirect('/')
             pushToast("Ajout avec succès.");
         } catch (error) {
-            setStateAxios({ data: null, isLoading: false, error: error });
+            if (axios.isAxiosError(error)) {
+                pushToast(error.response?.data.message, true)
+                setStateAxios({ data: null, isLoading: false, error: error.response?.data.message });
+            } else
+                setStateAxios({ data: null, isLoading: false, error: error });
         }
     }
 
@@ -39,7 +43,11 @@ export const useAxiosCreateUpdatePokemons = (formPokemon: FormPokemon) => {
             redirect(`/pokemons/${id}`)
             pushToast("Modification avec succès.")
         } catch (error) {
-            setStateAxios({ data: null, isLoading: false, error: error });
+            if (axios.isAxiosError(error)) {
+                pushToast(error.response?.data.message, true)
+                setStateAxios({ data: null, isLoading: false, error: error.response?.data.message });
+            } else
+                setStateAxios({ data: null, isLoading: false, error: error });
         }
     }
 
