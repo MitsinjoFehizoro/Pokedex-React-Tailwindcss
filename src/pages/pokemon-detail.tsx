@@ -56,12 +56,7 @@ const PokemonDetail: FunctionComponent = () => {
                                         )
                                     }
                                     {
-                                        stateAxiosDelete.error && (
-                                            <div>Erreur</div>
-                                        )
-                                    }
-                                    {
-                                        !stateAxiosDelete.isLoading && !stateAxiosDelete.error && (
+                                        !stateAxiosDelete.isLoading && (
                                             <i onClick={handleClick} className='fa fa-trash bg-sky-600/20 p-3 rounded-full text-slate-100 text-md transition hover:bg-sky-500/40 cursor-pointer'></i>
                                         )
                                     }
@@ -69,19 +64,22 @@ const PokemonDetail: FunctionComponent = () => {
                             </div>
                             <div className='mx-4'>
                                 <table className='table-auto w-full'>
-                                    <LigneTable col_1='Nom' col_2={pokemon.name} />
-                                    <LigneTable col_1='Poin de vie' col_2={pokemon.hp} />
-                                    <LigneTable col_1='Dégât' col_2={pokemon.cp} />
-                                    <tr>
-                                        <td className='text-left p-2 text-slate-200'>Types </td>
-                                        <td >
-                                            {
-                                                pokemon.types.map((type: string) => (
-                                                    <span className='py-1 px-5 rounded-xl text-slate-900 mr-1' key={type} style={{ backgroundColor: PokemonService.formatType(type) }} >{type}</span>
-                                                ))
-                                            }
-                                        </td>
-                                    </tr>
+                                    <tbody>
+                                        <LigneTable col_1='Nom' col_2={pokemon.name} />
+                                        <LigneTable col_1='Poin de vie' col_2={pokemon.hp} />
+                                        <LigneTable col_1='Dégât' col_2={pokemon.cp} />
+                                        <tr>
+                                            <td className='text-left p-2 text-slate-200'>Types </td>
+                                            <td >
+                                                {
+                                                    pokemon.types.map((type: string) => (
+                                                        <span className='py-1 px-5 rounded-xl text-slate-900 mr-1' key={type} style={{ backgroundColor: PokemonService.formatType(type) }} >{type}</span>
+                                                    ))
+                                                }
+                                            </td>
+                                        </tr>
+                                    </tbody>
+
                                 </table>
                             </div>
                             <NavLink to='/' className='ml-6 mt-2 bg-sky-600/20 w-36 text-center text-slate-300 block p-1 rounded-md hover:bg-sky-500/40 transition'>

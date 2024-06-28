@@ -21,5 +21,5 @@ type FormPokemon = {
 type FormUser = {
   pseudo: Champ,
   password: Champ,
-  confirmPassword: Champ
+  confirmPassword?: Champ
 }

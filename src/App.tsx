@@ -8,6 +8,7 @@ import PageNotFund from "./pages/page-not-found";
 import CreatePokemon from "./pages/pokemon-create";
 import UpdatePokemon from "./pages/pokemon-update";
 import Signup from "./pages/signup";
+import Login from "./pages/login";
 
 const route = createBrowserRouter([
   {
@@ -50,6 +51,10 @@ const route = createBrowserRouter([
       {
         path: "signup",
         element: <Signup />
+      },
+      {
+        path: "login",
+        element: <Login />
       }
     ]
   }
