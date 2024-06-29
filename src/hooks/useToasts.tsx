@@ -1,14 +1,18 @@
 import { FunctionComponent, PropsWithChildren, createContext, useContext, useState } from "react";
 import Toast from "../components/Toast";
 
-const ToastContext = createContext(
-    {
-        toast: null,
-        setToast: (t: string | null) => { },
-        isError: false,
-        setIsError: (b: boolean) => { }
-    }
-)
+interface ToastContextType {
+    toast: string | null,
+    setToast: (toast: string | null) => void
+    isError: boolean
+    setIsError: (isError: boolean) => void
+}
+const ToastContext = createContext<ToastContextType>({
+    toast: null,
+    setToast: () => { },
+    isError: false,
+    setIsError: () => { }
+})
 
 export const useToasts = () => {
     const { toast, setToast, isError, setIsError } = useContext(ToastContext)

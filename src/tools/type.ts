@@ -1,24 +1,24 @@
-type Champ = {
+export type Champ = {
   value?: string | number | string[];
   errorMessage?: string;
   isValid?: boolean;
 };
 
-type StateAxios = {
+export type StateAxios = {
   isLoading: boolean;
   data?: any;
   error?: any;
 };
 
-type FormPokemon = {
+export type FormPokemon = {
   picture?: Champ,
   name: Champ,
   hp: Champ,
   cp: Champ,
   types: Champ
-}
+};
 
-type FormUser = {
+export type FormUser = {
   pseudo: Champ,
   password: Champ,
   confirmPassword?: Champ

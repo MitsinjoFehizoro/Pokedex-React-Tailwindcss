@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import { StateAxios } from "../../tools/type";
 
 //GET POKEMON
 export const useAxiosGetPokemons = () => {

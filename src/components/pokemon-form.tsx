@@ -12,6 +12,7 @@ import PokemonService from "../tools/pokemon-service";
 import InputCheckBox from "./input-check-box";
 import ButtonSubmit from "./button.";
 import { useAxiosCreateUpdatePokemons } from "../api/pokemons-api/use-create-update-pokemons";
+import { FormPokemon } from "../tools/type";
 
 type Props = {
     pokemon?: Pokemon;

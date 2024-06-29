@@ -3,6 +3,7 @@ import { useToasts } from "../../hooks/useToasts";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { BASE_URL } from "../../tools/base-url";
+import { FormPokemon, StateAxios } from "../../tools/type";
 
 export const useAxiosCreateUpdatePokemons = (formPokemon: FormPokemon) => {
     const [stateAxios, setStateAxios] = useState<StateAxios>({

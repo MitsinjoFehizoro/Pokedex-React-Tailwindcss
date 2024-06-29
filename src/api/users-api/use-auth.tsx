@@ -5,17 +5,27 @@ import { BASE_URL } from "../../tools/base-url"
 import User from "../../models/user"
 import { useToasts } from "../../hooks/useToasts"
 import { useNavigate } from "react-router-dom"
+import { FormUser, StateAxios } from "../../tools/type"
 
-const AuthContext = createContext({
+interface AuthContextType {
+    isAuth: boolean
+    setIsAuth: (isAuth: boolean) => void
+    user: User | undefined
+    setUser: (user: User | undefined) => void
+    stateAxiosAuth: StateAxios
+    setStateAxiosAuth: (stateAxiosAuth: StateAxios) => void
+}
+
+const AuthContext = createContext<AuthContextType>({
     isAuth: false,
-    setIsAuth: (is: boolean) => { },
-    user: User,
-    setUser: (u: User) => { },
+    setIsAuth: () => { },
+    user: undefined,
+    setUser: () => { },
     stateAxiosAuth: {
         isLoading: false,
         error: null
     },
-    setStateAxiosAuth: (s: StateAxios) => { }
+    setStateAxiosAuth: () => { }
 })
 
 export const useAuth = () => {
@@ -47,9 +57,26 @@ export const useAuth = () => {
         }
     }
 
+    const logout = () => {
+        try {
+            localStorage.removeItem('token')
+            setIsAuth(false)
+            setUser(undefined)
+            redirect('/signup')
+            setStateAxiosAuth({ ...stateAxiosAuth, isLoading: false })
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                pushToast(error.response?.data.message, true)
+                setStateAxiosAuth({ ...stateAxiosAuth, isLoading: false, error: error.response?.data.message })
+            } else
+                setStateAxiosAuth({ ...stateAxiosAuth, isLoading: false, error: error })
+        }
+    }
+
     return {
         isAuth,
         login,
+        logout,
         user,
         stateAxiosAuth
     }
@@ -58,7 +85,7 @@ export const useAuth = () => {
 export const AuthContextProvider: FunctionComponent = ({ children }: PropsWithChildren) => {
     const [isAuth, setIsAuth] = useState<boolean>(false)
     const [user, setUser] = useState<User>()
-    const [stateAxiosAuth, setStateAxiosAuth] = useState<StateAxios>()
+    const [stateAxiosAuth, setStateAxiosAuth] = useState<StateAxios>({ isLoading: false, error: null })
 
     return (
         <AuthContext.Provider value={{ isAuth, setIsAuth, user, setUser, stateAxiosAuth, setStateAxiosAuth }} >

@@ -1,9 +1,10 @@
-import React, { FunctionComponent, useEffect, useState } from "react";
+import React, { FunctionComponent, useState } from "react";
 import { h2 } from "../tools/tailwind";
 import InputForm from "../components/input-form";
 import ButtonSubmit from "../components/button.";
 import { isShowButton, validationFormUser } from "../tools/validation-form-user";
 import { useAuth } from "../api/users-api/use-auth";
+import { FormUser } from "../tools/type";
 
 const Login: FunctionComponent = () => {
     const [formUser, setFormUser] = useState<FormUser>({

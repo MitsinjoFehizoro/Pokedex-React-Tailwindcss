@@ -1,5 +1,6 @@
 import React from "react";
 import { regexName, regexPassword } from "./regex";
+import { Champ, FormUser } from "./type";
 
 export const validationFormUser = (e: React.ChangeEvent<HTMLInputElement>, formUser: FormUser, setFormUser: (f: FormUser) => void) => {
     switch (e.target.name) {

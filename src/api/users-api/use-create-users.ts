@@ -3,6 +3,7 @@ import { BASE_URL } from "../../tools/base-url"
 import axios from "axios"
 import { useToasts } from "../../hooks/useToasts"
 import { useNavigate } from "react-router-dom"
+import { FormUser, StateAxios } from "../../tools/type"
 
 export const useAxiosCreateUsers = () => {
     const [stateAxios, setStateAxios] = useState<StateAxios>({

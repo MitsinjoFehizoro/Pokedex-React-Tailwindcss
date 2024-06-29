@@ -3,6 +3,7 @@ import { useToasts } from "../../hooks/useToasts";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { BASE_URL } from "../../tools/base-url";
+import { StateAxios } from "../../tools/type";
 
 export const useAxiosDeletePokemons = () => {
     const [stateAxiosDelete, setStateAxiosDelete] = useState<StateAxios>({
@@ -16,7 +17,7 @@ export const useAxiosDeletePokemons = () => {
 
     const deletePokemon = async (id: number) => {
         try {
-            setStateAxios({ ...stateAxios, isLoading: true })
+            setStateAxiosDelete({ ...stateAxiosDelete, isLoading: true })
             const response = await axios.delete(`${BASE_URL}pokemons/${id}`)
             setStateAxiosDelete({ isLoading: false, data: response.data, error: null });
             redirect('/')
