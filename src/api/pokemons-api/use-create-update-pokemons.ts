@@ -24,6 +24,7 @@ export const useAxiosCreateUpdatePokemons = (formPokemon: FormPokemon) => {
 
     const createPokemon = async () => {
         try {
+            setStateAxios({ ...stateAxios, isLoading: true })
             const response = await axios.post(`${BASE_URL}pokemons`, pokemon)
             setStateAxios({ isLoading: false, data: response.data, error: null });
             redirect('/')

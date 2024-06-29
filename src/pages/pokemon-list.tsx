@@ -10,8 +10,6 @@ import { useAxiosGetPokemons } from "../api/pokemons-api/use-get-pokemons";
 const PokemonList: FunctionComponent = () => {
     const { stateAxios, getPokemons } = useAxiosGetPokemons()
     const [pokemons, setPokemons] = useState<Pokemon[]>()
-   
-
 
     useEffect(() => {
         getPokemons(`${BASE_URL}pokemons`)

@@ -20,6 +20,7 @@ export const useAxiosCreateUsers = () => {
             password: formUser.password.value
         }
         try {
+            setStateAxios({ ...stateAxios, isLoading: true })
             const response = await axios.post(`${BASE_URL}signup`, user)
             setStateAxios({ isLoading: false, data: response.data, error: null });
             redirect('/')

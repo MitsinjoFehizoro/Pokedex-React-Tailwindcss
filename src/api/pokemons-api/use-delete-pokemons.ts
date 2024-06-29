@@ -16,6 +16,7 @@ export const useAxiosDeletePokemons = () => {
 
     const deletePokemon = async (id: number) => {
         try {
+            setStateAxios({ ...stateAxios, isLoading: true })
             const response = await axios.delete(`${BASE_URL}pokemons/${id}`)
             setStateAxiosDelete({ isLoading: false, data: response.data, error: null });
             redirect('/')

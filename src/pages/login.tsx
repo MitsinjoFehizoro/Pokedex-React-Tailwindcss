@@ -1,8 +1,9 @@
-import React, { FunctionComponent, useState } from "react";
+import React, { FunctionComponent, useEffect, useState } from "react";
 import { h2 } from "../tools/tailwind";
 import InputForm from "../components/input-form";
 import ButtonSubmit from "../components/button.";
 import { isShowButton, validationFormUser } from "../tools/validation-form-user";
+import { useAuth } from "../api/users-api/use-auth";
 
 const Login: FunctionComponent = () => {
     const [formUser, setFormUser] = useState<FormUser>({
@@ -13,14 +14,19 @@ const Login: FunctionComponent = () => {
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         validationFormUser(e, formUser, setFormUser)
     }
-    //gestion login
+
+    const { isAuth, login, user, stateAxiosAuth } = useAuth()
+    const onSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        login(formUser)
+    } 
     return (
         <div className='mx-auto'>
             <div className="max-w-lg mx-auto">
                 <h2 className={h2}>Se connecter : </h2>
                 <div className="mx-2 md:mx-0 pb-5 bg-slate-800 rounded-md ring-1 ring-gray-50/20">
                     <div className="mx-4 pt-6">
-                        <form>
+                        <form onSubmit={onSubmit}>
                             <InputForm
                                 label="Pseudo :"
                                 type="text"
