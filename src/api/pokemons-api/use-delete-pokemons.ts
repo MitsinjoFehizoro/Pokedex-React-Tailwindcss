@@ -18,7 +18,7 @@ export const useAxiosDeletePokemons = () => {
     const deletePokemon = async (id: number) => {
         try {
             setStateAxiosDelete({ ...stateAxiosDelete, isLoading: true })
-            const response = await axios.delete(`${BASE_URL}pokemons/${id}`)
+            const response = await axios.delete(`${BASE_URL}pokemons/${id}`, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
             setStateAxiosDelete({ isLoading: false, data: response.data, error: null });
             navigate('/')
             pushToast("Suppression avec succès.");
