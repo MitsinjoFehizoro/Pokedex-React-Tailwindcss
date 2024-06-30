@@ -121,9 +121,8 @@ const PokemonForm: FunctionComponent<Props> = ({ pokemon }) => {
                     )
                 }
                 <div className="pt-5">
-                    <ButtonSubmit isShowButton={isFormValid(formPokemon)} isLoading={stateAxios.isLoading} text="Valider" />
+                    <ButtonSubmit isDisable={!isFormValid(formPokemon)} isLoading={stateAxios.isLoading} text="Valider" />
                 </div>
-
             </form>
         </div>
     );

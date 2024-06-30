@@ -1,5 +1,6 @@
 import React from "react";
 import { regexCp, regexHp, regexImage, regexName } from "./regex";
+import { Champ, FormPokemon } from "./type";
 
 
 export const validateFormPokemon = (

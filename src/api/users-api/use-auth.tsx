@@ -61,9 +61,11 @@ export const useAuth = () => {
         try {
             localStorage.removeItem('token')
             setIsAuth(false)
+            pushToast(`Au revoir ${user?.pseudo}`)
             setUser(undefined)
-            redirect('/signup')
+            redirect('/login')
             setStateAxiosAuth({ ...stateAxiosAuth, isLoading: false })
+
         } catch (error) {
             if (axios.isAxiosError(error)) {
                 pushToast(error.response?.data.message, true)

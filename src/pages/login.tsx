@@ -2,9 +2,10 @@ import React, { FunctionComponent, useState } from "react";
 import { h2 } from "../tools/tailwind";
 import InputForm from "../components/input-form";
 import ButtonSubmit from "../components/button.";
-import { isShowButton, validationFormUser } from "../tools/validation-form-user";
+import { isDisableButton, validationFormUser } from "../tools/validation-form-user";
 import { useAuth } from "../api/users-api/use-auth";
 import { FormUser } from "../tools/type";
+import { NavLink } from "react-router-dom";
 
 const Login: FunctionComponent = () => {
     const [formUser, setFormUser] = useState<FormUser>({
@@ -46,13 +47,14 @@ const Login: FunctionComponent = () => {
                                 errorMessage={formUser?.password.errorMessage}
                                 placeholder=""
                             />
-                            <div className="mt-6">
+                            <div className="mt-6 mb-4">
                                 <ButtonSubmit
-                                    isShowButton={isShowButton(formUser)}
+                                    isDisable={isDisableButton(formUser)}
                                     isLoading={false}
                                     text="Se connecter"
                                 />
                             </div>
+                            <NavLink to={'/signup'} className='text-sm underline'>Créer un compte</NavLink>
                         </form>
                     </div>
                 </div>

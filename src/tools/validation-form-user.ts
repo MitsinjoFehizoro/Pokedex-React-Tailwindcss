@@ -61,8 +61,8 @@ export const validationFormUser = (e: React.ChangeEvent<HTMLInputElement>, formU
 }
 
 
-export const isShowButton = (formUser: FormUser) => {
-    let isValid: boolean = false
-    if (formUser.pseudo.isValid && formUser.password.isValid && (!formUser.confirmPassword || formUser.confirmPassword.isValid)) isValid = true
+export const isDisableButton = (formUser: FormUser) => {
+    let isValid: boolean = true
+    if (formUser.pseudo.isValid && formUser.password.isValid && (!formUser.confirmPassword || formUser.confirmPassword.isValid)) isValid = false
     return isValid
 }

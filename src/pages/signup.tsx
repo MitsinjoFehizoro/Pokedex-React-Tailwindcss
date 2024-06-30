@@ -1,9 +1,11 @@
 import React, { FunctionComponent, useState } from "react";
 import { h2 } from "../tools/tailwind";
 import InputForm from "../components/input-form";
-import { isShowButton, validationFormUser } from "../tools/validation-form-user";
+import { isDisableButton, validationFormUser } from "../tools/validation-form-user";
 import ButtonSubmit from "../components/button.";
 import { useAxiosCreateUsers } from "../api/users-api/use-create-users";
+import { FormUser } from "../tools/type";
+import { NavLink } from "react-router-dom";
 
 const Signup: FunctionComponent = () => {
     const [formUser, setFormUser] = useState<FormUser>({
@@ -28,7 +30,7 @@ const Signup: FunctionComponent = () => {
                 <h2 className={h2}>Créer un compte : </h2>
                 <div className="mx-2 md:mx-0 pb-5 bg-slate-800 rounded-md ring-1 ring-gray-50/20">
                     <div className="mx-4 pt-6">
-                        <form onSubmit={onSubmit} > 
+                        <form onSubmit={onSubmit} >
                             <InputForm
                                 label="Pseudo :"
                                 type="text"
@@ -56,13 +58,14 @@ const Signup: FunctionComponent = () => {
                                 errorMessage={formUser?.confirmPassword?.errorMessage}
                                 placeholder=""
                             />
-                            <div className="mt-6">
+                            <div className="mt-6 mb-4">
                                 <ButtonSubmit
-                                    isShowButton={isShowButton(formUser)}
+                                    isDisable={isDisableButton(formUser)}
                                     isLoading={stateAxios.isLoading}
                                     text="S'inscrire"
                                 />
                             </div>
+                            <NavLink to={'/login'} className='text-sm underline'>Avez-vous déja  un compte ?</NavLink>
                         </form>
                     </div>
                 </div>
