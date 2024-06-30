@@ -4,7 +4,7 @@ import { FunctionComponent, PropsWithChildren, createContext, useContext, useSta
 import { BASE_URL } from "../../tools/base-url"
 import User from "../../models/user"
 import { useToasts } from "../../hooks/useToasts"
-import { useNavigate } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import { FormUser, StateAxios } from "../../tools/type"
 
 interface AuthContextType {
@@ -32,7 +32,8 @@ export const useAuth = () => {
     const { isAuth, setIsAuth, user, setUser, stateAxiosAuth, setStateAxiosAuth } = useContext(AuthContext)
 
     const { pushToast } = useToasts()
-    const redirect = useNavigate()
+    const navigate = useNavigate()
+    const location = useLocation();
 
     const login = async (formUser: FormUser) => {
         try {
@@ -45,9 +46,10 @@ export const useAuth = () => {
             localStorage.setItem('token', response.data.token)
             setIsAuth(true)
             setUser(response.data.user)
-            redirect('/')
             pushToast(`Bonjour ${user.pseudo} !!`)
             setStateAxiosAuth({ ...stateAxiosAuth, isLoading: false })
+            const from = location.state?.from || "/"
+            if (from !== "/login " && from !== "/signup") navigate(from)
         } catch (error) {
             if (axios.isAxiosError(error)) {
                 pushToast(error.response?.data.message, true)
@@ -63,7 +65,7 @@ export const useAuth = () => {
             setIsAuth(false)
             pushToast(`Au revoir ${user?.pseudo}`)
             setUser(undefined)
-            redirect('/login')
+            navigate('/login')
             setStateAxiosAuth({ ...stateAxiosAuth, isLoading: false })
 
         } catch (error) {

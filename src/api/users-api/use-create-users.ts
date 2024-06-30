@@ -13,7 +13,7 @@ export const useAxiosCreateUsers = () => {
     })
 
     const { pushToast } = useToasts()
-    const redirect = useNavigate()
+    const navigate = useNavigate()
 
     const createUser = async (formUser: FormUser) => {
         const user = {
@@ -24,7 +24,7 @@ export const useAxiosCreateUsers = () => {
             setStateAxios({ ...stateAxios, isLoading: true })
             const response = await axios.post(`${BASE_URL}signup`, user)
             setStateAxios({ isLoading: false, data: response.data, error: null });
-            redirect('/login')
+            navigate('/login')
             pushToast('Votre compte a été créé.')
         } catch (error) {
             if (axios.isAxiosError(error)) {

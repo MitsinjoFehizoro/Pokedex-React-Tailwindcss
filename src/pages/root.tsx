@@ -9,12 +9,12 @@ const Root: FunctionComponent = () => {
         setHauteur(h)
     }
     const { isAuth, logout } = useAuth()
-    const redirect = useNavigate()
+    const navigate = useNavigate()
     const handleClick = () => {
         if (isAuth) {
             logout()
         } else {
-            redirect('/login')
+            navigate('/login')
         }
     }
 

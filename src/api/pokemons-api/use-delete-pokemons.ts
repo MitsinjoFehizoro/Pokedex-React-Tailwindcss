@@ -13,14 +13,14 @@ export const useAxiosDeletePokemons = () => {
     });
 
     const { pushToast } = useToasts()
-    const redirect = useNavigate()
+    const navigate = useNavigate()
 
     const deletePokemon = async (id: number) => {
         try {
             setStateAxiosDelete({ ...stateAxiosDelete, isLoading: true })
             const response = await axios.delete(`${BASE_URL}pokemons/${id}`)
             setStateAxiosDelete({ isLoading: false, data: response.data, error: null });
-            redirect('/')
+            navigate('/')
             pushToast("Suppression avec succès.");
         } catch (error) {
             if (axios.isAxiosError(error)) {

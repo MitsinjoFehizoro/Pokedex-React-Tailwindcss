@@ -21,14 +21,14 @@ export const useAxiosCreateUpdatePokemons = (formPokemon: FormPokemon) => {
     };
 
     const { pushToast } = useToasts()
-    const redirect = useNavigate()
+    const navigate = useNavigate()
 
     const createPokemon = async () => {
         try {
             setStateAxios({ ...stateAxios, isLoading: true })
             const response = await axios.post(`${BASE_URL}pokemons`, pokemon)
             setStateAxios({ isLoading: false, data: response.data, error: null });
-            redirect('/')
+            navigate('/')
             pushToast("Ajout avec succès.");
         } catch (error) {
             if (axios.isAxiosError(error)) {
@@ -42,7 +42,7 @@ export const useAxiosCreateUpdatePokemons = (formPokemon: FormPokemon) => {
     const updatePokemon = async (id: number) => {
         try {
             await axios.put(`${BASE_URL}pokemons/${id}`, pokemon)
-            redirect(`/pokemons/${id}`)
+            navigate(`/pokemons/${id}`)
             pushToast("Modification avec succès.")
         } catch (error) {
             if (axios.isAxiosError(error)) {

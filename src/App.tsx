@@ -9,6 +9,7 @@ import CreatePokemon from "./pages/pokemon-create";
 import UpdatePokemon from "./pages/pokemon-update";
 import Signup from "./pages/signup";
 import Login from "./pages/login";
+import ProtectedRoute from "./components/protected-route";
 
 const route = createBrowserRouter([
   {
@@ -34,7 +35,7 @@ const route = createBrowserRouter([
           },
           {
             path: 'add',
-            element: <CreatePokemon />
+            element: <ProtectedRoute element={<CreatePokemon />} />
           },
           {
             path: 'edit',
@@ -42,7 +43,7 @@ const route = createBrowserRouter([
             children: [
               {
                 path: ':id',
-                element: <UpdatePokemon />
+                element: <ProtectedRoute element={<UpdatePokemon />} />
               }
             ]
           },
