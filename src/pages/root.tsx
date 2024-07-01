@@ -1,6 +1,6 @@
 import { FunctionComponent, useState } from "react";
 import BarreDeNavigation from "../components/barre-de-navigation";
-import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 import { useAuth } from "../api/users-api/use-auth";
 
 const Root: FunctionComponent = () => {
@@ -9,14 +9,6 @@ const Root: FunctionComponent = () => {
         setHauteur(h)
     }
     const { isAuth, logout } = useAuth()
-    const navigate = useNavigate()
-    const handleClick = () => {
-        if (isAuth) {
-            logout()
-        } else {
-            navigate('/login')
-        }
-    }
 
     return (
         <>
@@ -26,7 +18,18 @@ const Root: FunctionComponent = () => {
                 <NavLink to={'/pokemons/add'} className='fixed bottom-5 right-8'>
                     <i className='fa fa-add bg-red-600/80 p-3 rounded-full text-slate-100 text-md transition hover:bg-red-500 cursor-pointer'></i>
                 </NavLink>
-                <p onClick={handleClick} className=" fixed right-6 top-6 z-10 cursor-pointer">{isAuth?"Se deconnecter" : "Se connecter"}</p>
+
+                <p className="fixed right-6 z-10 cursor-pointer text-sm" style={{ top: hauteur + 15 + "px" }}>
+                    {isAuth ? (
+                        <p onClick={logout} className="underline text-slate-200 hover:text-slate-50">Logout</p>
+                    ) : (
+                        <>
+                            <NavLink to={'/login'} className="underline text-slate-200 hover:text-slate-50">Login</NavLink>
+                            <span> / </span>
+                            <NavLink to={'/signup'} className="underline text-slate-200 hover:text-slate-50">Signup</NavLink>
+                        </>
+                    )}
+                </p>
             </section >
         </>
     );
