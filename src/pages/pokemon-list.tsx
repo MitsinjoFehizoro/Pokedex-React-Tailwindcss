@@ -1,4 +1,4 @@
-import { FunctionComponent, useEffect, useState } from "react";
+import React, { FunctionComponent, useEffect, useState } from "react";
 import { h2 } from "../tools/tailwind";
 import PokemonCard from "../components/pokemon-card";
 import Loading from "../components/loading";
@@ -18,6 +18,16 @@ const PokemonList: FunctionComponent = () => {
         setPokemons(stateAxios.data?.data)
     }, [stateAxios])
 
+    //Recherche
+    const [search, setSearch] = useState<string>('')
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setSearch(e.target.value)
+    }
+    useEffect(() => {
+        const pokemons: Pokemon[] = stateAxios.data?.data || []
+        setPokemons(pokemons.filter(pokemon => pokemon.name.toLowerCase().includes(search)));
+    }, [search])
+
     return (
         <div className=" mx-auto container xl:w-9/12 relative">
             {
@@ -32,9 +42,18 @@ const PokemonList: FunctionComponent = () => {
             }
             {
                 pokemons && (
-                    <div>
-                        <div className="text-slate-100">
-                            <h2 className={h2}>Listes des pokémons : </h2>
+                    <div className="min-h-screen">
+                        <div className="flex justify-center text-slate-100">
+                            <h2 className={h2}>Listes des pokémons :</h2>
+                            <form>
+                                <input
+                                    className="mt-2 px-2 bg-slate-900 outline-none border-b"
+                                    placeholder="recherche..."
+                                    value={search}
+                                    onChange={handleChange}
+                                    type="text" name="search" id="search" />
+                                <i className="fa fa-search"></i>
+                            </form>
                         </div>
                         <div className="grid place-content-center gap-4 lg:grid-cols-3 md:grid-cols-2 " >
                             {

@@ -13,11 +13,17 @@ const Root: FunctionComponent = () => {
     return (
         <>
             <BarreDeNavigation onHauteurChange={handleHauteur} />
-            <section className='pb-10 relative' style={{ paddingTop: hauteur * 1.5 + 'px' }}>
+            <section className='pb-10 relative' style={{ paddingTop: hauteur + 'px' }}>
                 <Outlet />
-                <NavLink to={'/pokemons/add'} className='fixed bottom-5 right-8'>
-                    <i className='fa fa-add bg-red-600/80 p-3 rounded-full text-slate-100 text-md transition hover:bg-red-500 cursor-pointer'></i>
-                </NavLink>
+                <div className="fixed bottom-5 right-8">
+                    <NavLink to={'/'} className="block mb-1">
+                        <i className='fa fa-home text-sm pt-2 bg-slate-600/80 p-3 rounded-full text-slate-100 text-md transition hover:bg-slate-500 cursor-pointer'></i>
+                    </NavLink>
+                    <NavLink to={'/pokemons/add'} className="block" >
+                        <i className='fa fa-add bg-red-600/80 p-3 rounded-full text-slate-100 text-md transition hover:bg-red-500 cursor-pointer'></i>
+                    </NavLink>
+                </div>
+
 
                 <p className="fixed right-6 z-10 cursor-pointer text-sm" style={{ top: hauteur + 15 + "px" }}>
                     {isAuth ? (

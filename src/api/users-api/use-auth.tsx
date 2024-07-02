@@ -46,7 +46,7 @@ export const useAuth = () => {
             localStorage.setItem('token', response.data.token)
             setIsAuth(true)
             setUser(response.data.user)
-            pushToast(`Bonjour ${user.pseudo} !!`)
+            pushToast(`Bonjour ${user.pseudo}.`)
             setStateAxiosAuth({ ...stateAxiosAuth, isLoading: false })
             const from = location.state?.from || "/"
             if (from !== "/login " && from !== "/signup") navigate(from)
@@ -63,7 +63,7 @@ export const useAuth = () => {
         try {
             localStorage.removeItem('token')
             setIsAuth(false)
-            pushToast(`Au revoir ${user?.pseudo}`)
+            pushToast(`Au revoir ${user?.pseudo}.`)
             setUser(undefined)
             navigate('/login')
             setStateAxiosAuth({ ...stateAxiosAuth, isLoading: false })

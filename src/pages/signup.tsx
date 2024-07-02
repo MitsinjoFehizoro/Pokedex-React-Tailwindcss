@@ -25,49 +25,47 @@ const Signup: FunctionComponent = () => {
     }
 
     return (
-        <div className='mx-auto'>
-            <div className="max-w-lg mx-auto">
-                <h2 className={h2}>Créer un compte : </h2>
-                <div className="mx-2 md:mx-0 pb-5 bg-slate-800 rounded-md ring-1 ring-gray-50/20">
-                    <div className="mx-4 pt-6">
-                        <form onSubmit={onSubmit} >
-                            <InputForm
-                                label="Pseudo :"
-                                type="text"
-                                name="pseudo"
-                                value={formUser?.pseudo.value}
-                                onChange={handleChange}
-                                errorMessage={formUser?.pseudo.errorMessage}
-                                placeholder=""
+        <div className="max-w-md mx-auto">
+            <h2 className={h2}>Créer un compte : </h2>
+            <div className="mx-2 md:mx-0 pb-5 bg-slate-800 rounded-md ring-1 ring-gray-50/20">
+                <div className="mx-4 pt-6">
+                    <form onSubmit={onSubmit} >
+                        <InputForm
+                            label="Pseudo :"
+                            type="text"
+                            name="pseudo"
+                            value={formUser?.pseudo.value}
+                            onChange={handleChange}
+                            errorMessage={formUser?.pseudo.errorMessage}
+                            placeholder=""
+                        />
+                        <InputForm
+                            label="Mot de passe :"
+                            type="password"
+                            name="password"
+                            value={formUser?.password.value}
+                            onChange={handleChange}
+                            errorMessage={formUser?.password.errorMessage}
+                            placeholder=""
+                        />
+                        <InputForm
+                            label="Confirmé le mot de passe :"
+                            type="password"
+                            name="confirmPassword"
+                            value={formUser?.confirmPassword?.value}
+                            onChange={handleChange}
+                            errorMessage={formUser?.confirmPassword?.errorMessage}
+                            placeholder=""
+                        />
+                        <div className="mt-6 mb-4">
+                            <ButtonSubmit
+                                isDisable={isDisableButton(formUser)}
+                                isLoading={stateAxios.isLoading}
+                                text="S'inscrire"
                             />
-                            <InputForm
-                                label="Mot de passe :"
-                                type="password"
-                                name="password"
-                                value={formUser?.password.value}
-                                onChange={handleChange}
-                                errorMessage={formUser?.password.errorMessage}
-                                placeholder=""
-                            />
-                            <InputForm
-                                label="Confirmé le mot de passe :"
-                                type="password"
-                                name="confirmPassword"
-                                value={formUser?.confirmPassword?.value}
-                                onChange={handleChange}
-                                errorMessage={formUser?.confirmPassword?.errorMessage}
-                                placeholder=""
-                            />
-                            <div className="mt-6 mb-4">
-                                <ButtonSubmit
-                                    isDisable={isDisableButton(formUser)}
-                                    isLoading={stateAxios.isLoading}
-                                    text="S'inscrire"
-                                />
-                            </div>
-                            <NavLink to={'/login'} className='text-sm underline'>Avez-vous déja  un compte ?</NavLink>
-                        </form>
-                    </div>
+                        </div>
+                        <NavLink to={'/login'} className='text-sm underline'>Avez-vous déja  un compte ?</NavLink>
+                    </form>
                 </div>
             </div>
         </div>
