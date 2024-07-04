@@ -37,7 +37,7 @@ const PokemonForm: FunctionComponent<Props> = ({ pokemon }) => {
                 hp: { value: pokemon.hp, isValid: true },
                 cp: { value: pokemon.cp, isValid: true },
                 types: { value: pokemon.types, isValid: true },
-                picture: { value: pokemon.picture, isValid: true },
+                picture: { value: pokemon.picture, isValid: true }
             });
         }
     }, []);

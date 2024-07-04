@@ -1,1 +1,1 @@
-export const BASE_URL = "http://localhost:5174/"
+export const BASE_URL = "https://pokedex-api-nodejs-59es.onrender.com/"

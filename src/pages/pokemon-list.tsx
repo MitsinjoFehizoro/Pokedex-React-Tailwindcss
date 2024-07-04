@@ -36,7 +36,7 @@ const PokemonList: FunctionComponent = () => {
                 )
             }
             {
-                stateAxios.error !== null ?? (
+                stateAxios.error && (
                     <PageError error={stateAxios.error.toString()} />
                 )
             }

@@ -41,7 +41,9 @@ export const useAxiosCreateUpdatePokemons = (formPokemon: FormPokemon) => {
 
     const updatePokemon = async (id: number) => {
         try {
+            setStateAxios({ ...stateAxios, isLoading: true })
             await axios.put(`${BASE_URL}pokemons/${id}`, pokemon, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
+            setStateAxios({ data: null, isLoading: false, error: null });
             navigate(`/pokemons/${id}`)
             pushToast("Modification avec succès.")
         } catch (error) {

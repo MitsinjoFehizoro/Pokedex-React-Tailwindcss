@@ -1,5 +1,5 @@
 import { FunctionComponent, useEffect, useState } from "react";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink, useNavigate, useParams, useLocation } from "react-router-dom";
 import { h2 } from "../tools/tailwind";
 import Pokemon from "../models/pokemon";
 import PokemonService from "../tools/pokemon-service";
@@ -8,6 +8,7 @@ import PageError from "./page-error";
 import { BASE_URL } from "../tools/base-url";
 import { useAxiosDeletePokemons } from "../api/pokemons-api/use-delete-pokemons";
 import { useAxiosGetPokemons } from "../api/pokemons-api/use-get-pokemons";
+import { useAuth } from "../api/users-api/use-auth";
 
 
 const PokemonDetail: FunctionComponent = () => {
@@ -23,8 +24,13 @@ const PokemonDetail: FunctionComponent = () => {
     }, [stateAxios])
 
     const { stateAxiosDelete, deletePokemon } = useAxiosDeletePokemons()
+    const { isAuth } = useAuth()
+    const navigate = useNavigate()
     const handleClick = () => {
-        if (pokemon) deletePokemon(pokemon.id)
+        if (isAuth) {
+            if (pokemon) deletePokemon(pokemon.id)
+        } else
+            navigate("/login", { state: { from: location.pathname } })
     }
 
     return (
@@ -35,12 +41,12 @@ const PokemonDetail: FunctionComponent = () => {
                 )
             }
             {
-                stateAxios.error !== null ?? (
+                stateAxios.error && (
                     <PageError error={stateAxios.error.toString()} />
                 )
             }
             {
-                pokemon ? (
+                pokemon && (
                     <div className="max-w-xl mx-auto">
                         <h2 className={h2}>{pokemon.name}</h2>
                         <div className='mx-2 md:mx-0 pb-5 bg-slate-800 rounded-md ring-1 ring-gray-50/20'>
@@ -82,17 +88,15 @@ const PokemonDetail: FunctionComponent = () => {
 
                                 </table>
                             </div>
-                            <NavLink to='/' className='ml-6 mt-2 bg-sky-600/20 w-36 text-center text-slate-300 block p-1 rounded-md hover:bg-sky-500/40 transition'>
+                            <NavLink to='/' className='ml-6 mt-2 bg-sky-600/20 w-36 text-center text-slate-300 block p-1 rounded-md hover:bg-sky-500/40 hover:text-slate-300 transition'>
                                 <i className='fa fa-arrow-left'></i>
                                 <span className='pl-1'>Retour</span>
                             </NavLink>
                         </div>
                     </div>
-                ) : (
-                    <div>Aucun pokémon à afficer.</div>
                 )
-
             }
+
         </div >
     )
 }
