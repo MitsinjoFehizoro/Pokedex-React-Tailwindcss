@@ -30,7 +30,7 @@ const UpdatePokemon: FunctionComponent = () => {
                 }
                 {
                     stateAxios.error && (
-                        <PageError error={stateAxios.error.toString()} />
+                        <PageError />
                     )
                 }
                 {
