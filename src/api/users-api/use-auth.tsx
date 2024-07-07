@@ -86,7 +86,7 @@ export const useAuth = () => {
     }
 }
 
-export const AuthContextProvider: FunctionComponent = ({ children }: PropsWithChildren) => {
+export const AuthContextProvider: FunctionComponent<PropsWithChildren> = ({ children }: PropsWithChildren) => {
     const [isAuth, setIsAuth] = useState<boolean>(false)
     const [user, setUser] = useState<User>()
     const [stateAxiosAuth, setStateAxiosAuth] = useState<StateAxios>({ isLoading: false, error: null })

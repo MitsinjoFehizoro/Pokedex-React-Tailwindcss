@@ -1,5 +1,5 @@
 import { FunctionComponent, useEffect, useState } from "react";
-import { NavLink, useNavigate, useParams, useLocation } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { h2 } from "../tools/tailwind";
 import Pokemon from "../models/pokemon";
 import PokemonService from "../tools/pokemon-service";

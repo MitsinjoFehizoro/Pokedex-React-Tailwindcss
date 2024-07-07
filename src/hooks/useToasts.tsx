@@ -31,7 +31,7 @@ export const useToasts = () => {
 }
 
 //ity no methode fiable par rapport @ le ao @ React_Pokemons
-export const ToastContextProvider: FunctionComponent = ({ children }: PropsWithChildren) => {
+export const ToastContextProvider: FunctionComponent<PropsWithChildren> = ({ children }: PropsWithChildren) => {
     const [toast, setToast] = useState<string | null>(null)
     const [isError, setIsError] = useState<boolean>(false)
     return (
