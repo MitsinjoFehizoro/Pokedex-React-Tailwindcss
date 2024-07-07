@@ -43,11 +43,11 @@ const PokemonList: FunctionComponent = () => {
             {
                 pokemons && (
                     <div className="min-h-screen">
-                        <div className="flex justify-center text-slate-100">
+                        <div className="flex flex-col sm:flex-row justify-center text-slate-100">
                             <h2 className={h2}>Listes des pokémons :</h2>
                             <form>
                                 <input
-                                    className="mt-2 px-2 bg-slate-900 outline-none border-b"
+                                    className="mb-4 sm:mb-0 sm:mt-2 px-2 bg-slate-900 outline-none border-b"
                                     placeholder="recherche..."
                                     value={search}
                                     onChange={handleChange}

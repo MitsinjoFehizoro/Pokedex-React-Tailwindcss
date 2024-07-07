@@ -15,7 +15,7 @@ const Root: FunctionComponent = () => {
             <BarreDeNavigation onHauteurChange={handleHauteur} />
             <section className='pb-10 relative' style={{ paddingTop: hauteur + 'px' }}>
                 <Outlet />
-                <div className="fixed bottom-5 right-8">
+                <div className="fixed bottom-5 md:right-8 right-2">
                     <NavLink to={'/'} className="block mb-1">
                         <i className='fa fa-home text-sm pt-2 bg-slate-600/80 p-3 rounded-full text-slate-100 text-md transition hover:bg-slate-500 cursor-pointer'></i>
                     </NavLink>
@@ -25,7 +25,7 @@ const Root: FunctionComponent = () => {
                 </div>
 
 
-                <p className="fixed right-6 z-10 cursor-pointer text-sm" style={{ top: hauteur + 15 + "px" }}>
+                <p  className="fixed right-6 z-10 cursor-pointer text-sm top-16 sm:top-24"  >
                     {isAuth ? (
                         <p onClick={logout} className="underline text-slate-200 hover:text-slate-50">Logout</p>
                     ) : (

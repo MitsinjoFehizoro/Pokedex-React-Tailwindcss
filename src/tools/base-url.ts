@@ -1,1 +1,1 @@
-export const BASE_URL = "https://pokedex-api-nodejs-59es.onrender.com/"
+export const BASE_URL = import.meta.env.VITE_BASE_URL

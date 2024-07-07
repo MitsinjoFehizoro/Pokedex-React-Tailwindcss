@@ -49,13 +49,13 @@ const PokemonDetail: FunctionComponent = () => {
                 pokemon && (
                     <div className="max-w-xl mx-auto">
                         <h2 className={h2}>{pokemon.name}</h2>
-                        <div className='mx-2 md:mx-0 pb-5 bg-slate-800 rounded-md ring-1 ring-gray-50/20'>
+                        <div className='mx-6 md:mx-0 pb-5 bg-slate-800 rounded-md ring-1 ring-gray-50/20'>
                             <div className='text-center relative'>
                                 <img src={pokemon.picture} alt="" className='mx-auto' />
-                                <NavLink to={`/pokemons/edit/${pokemon.id}`} className='absolute bottom-0 right-16'>
+                                <NavLink to={`/pokemons/edit/${pokemon.id}`} className='absolute top-48 sm:top-44 right-16'>
                                     <i className='fa fa-edit bg-sky-600/20 p-3 rounded-full text-slate-100 text-md transition hover:bg-sky-500/40 cursor-pointer'></i>
                                 </NavLink>
-                                <div className='absolute bottom-0 right-4'>
+                                <div className='absolute top-48 sm:top-44 right-4'>
                                     {
                                         stateAxiosDelete.isLoading && (
                                             <i className="fas fa-spinner fa-spin  bg-sky-600/20 p-3 rounded-full text-slate-100 text-md cursor-wait"></i>
@@ -68,25 +68,20 @@ const PokemonDetail: FunctionComponent = () => {
                                     }
                                 </div>
                             </div>
-                            <div className='mx-4'>
-                                <table className='table-auto w-full'>
-                                    <tbody>
-                                        <LigneTable col_1='Nom' col_2={pokemon.name} />
-                                        <LigneTable col_1='Poin de vie' col_2={pokemon.hp} />
-                                        <LigneTable col_1='Dégât' col_2={pokemon.cp} />
-                                        <tr>
-                                            <td className='text-left p-2 text-slate-200'>Types </td>
-                                            <td >
-                                                {
-                                                    pokemon.types.map((type: string) => (
-                                                        <span className='py-1 px-5 rounded-xl text-slate-900 mr-1' key={type} style={{ backgroundColor: PokemonService.formatType(type) }} >{type}</span>
-                                                    ))
-                                                }
-                                            </td>
-                                        </tr>
-                                    </tbody>
-
-                                </table>
+                            <div className='mx-4 mt-2'>
+                                <LigneTable col_1='Nom :' col_2={pokemon.name} />
+                                <LigneTable col_1='Point de vie :' col_2={pokemon.hp} />
+                                <LigneTable col_1='Dégât :' col_2={pokemon.cp} />
+                                <div className="w-full sm:flex">
+                                    <div className='text-left p-2 text-slate-200 sm:w-1/2'>Types :</div>
+                                    <div className=" text-left pl-2 pb-4 sm:text-right sm:p-0 text-slate-300 sm:w-1/2" >
+                                        {
+                                            pokemon.types.map((type: string) => (
+                                                <span className='py-1 px-5 rounded-xl text-slate-900 mr-1' key={type} style={{ backgroundColor: PokemonService.formatType(type) }} >{type}</span>
+                                            ))
+                                        }
+                                    </div>
+                                </div>
                             </div>
                             <NavLink to='/' className='ml-6 mt-2 bg-sky-600/20 w-36 text-center text-slate-300 block p-1 rounded-md hover:bg-sky-500/40 hover:text-slate-300 transition'>
                                 <i className='fa fa-arrow-left'></i>
@@ -107,10 +102,10 @@ type Props = {
 }
 const LigneTable: FunctionComponent<Props> = ({ col_1, col_2 }) => {
     return (
-        <tr>
-            <td className='text-left p-2 text-slate-200'>{col_1}</td>
-            <td className='text-right text-slate-300'>{col_2}</td>
-        </tr>
+        <div className="w-full sm:flex">
+            <div className='text-left p-2 text-slate-200 sm:w-1/2'>{col_1}</div>
+            <div className=' text-left pl-2 pb-4 sm:text-right sm:p-2 text-slate-300 sm:w-1/2'>{col_2}</div>
+        </div>
     )
 }
 export default PokemonDetail
