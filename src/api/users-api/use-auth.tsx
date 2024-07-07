@@ -35,7 +35,7 @@ export const useAuth = () => {
     const navigate = useNavigate()
     const location = useLocation();
 
-    const login = async (formUser: FormUser) => {        
+    const login = async (formUser: FormUser) => {
         try {
             setStateAxiosAuth({ ...stateAxiosAuth, isLoading: true })
             const user = {
