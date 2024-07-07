@@ -8,7 +8,7 @@ const Toast: FunctionComponent = () => {
     }
     return (
         <div
-            className="fixed z-20 bg-slate-900 top-20 right-1">
+            className="fixed z-20 bg-slate-900 top-24 sm:top-20 right-1">
             {
                 toast && (
                     !isError ? (

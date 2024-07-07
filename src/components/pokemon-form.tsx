@@ -102,7 +102,7 @@ const PokemonForm: FunctionComponent<Props> = ({ pokemon }) => {
                 />
                 <p className="text-left text-slate-100 block text-sm mb-1">Types :</p>
 
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 mt-2">
+                <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 gap-3 mt-2">
                     {PokemonService.types.map((type) => (
                         <InputCheckBox
                             key={type}

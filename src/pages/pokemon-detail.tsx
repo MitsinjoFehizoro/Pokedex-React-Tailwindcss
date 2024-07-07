@@ -49,7 +49,7 @@ const PokemonDetail: FunctionComponent = () => {
                 pokemon && (
                     <div className="max-w-xl mx-auto">
                         <h2 className={h2}>{pokemon.name}</h2>
-                        <div className='mx-6 md:mx-0 pb-5 bg-slate-800 rounded-md ring-1 ring-gray-50/20'>
+                        <div className='mx-0 pb-5 bg-slate-800 rounded-md ring-1 ring-gray-50/20'>
                             <div className='text-center relative'>
                                 <img src={pokemon.picture} alt="" className='mx-auto' />
                                 <NavLink to={`/pokemons/edit/${pokemon.id}`} className='absolute top-48 sm:top-44 right-16'>

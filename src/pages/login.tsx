@@ -25,7 +25,7 @@ const Login: FunctionComponent = () => {
     return (
         <div className="max-w-md mx-auto">
             <h2 className={h2}>Se connecter : </h2>
-            <div className="mx-2 md:mx-0 pb-5 bg-slate-800 rounded-md ring-1 ring-gray-50/20">
+            <div className="mx-0 pb-5 bg-slate-800 rounded-md ring-1 ring-gray-50/20">
                 <div className="mx-4 pt-6">
                     <form onSubmit={onSubmit}>
                         <InputForm
