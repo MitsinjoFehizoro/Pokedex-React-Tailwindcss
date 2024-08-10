@@ -25,7 +25,7 @@ const Root: FunctionComponent = () => {
                 </div>
 
 
-                <p  className="fixed right-6 z-10 cursor-pointer text-sm top-16 sm:top-24"  >
+                <p className="fixed right-6 z-10 cursor-pointer text-sm top-16 sm:top-24"  >
                     {isAuth ? (
                         <p onClick={logout} className="underline text-slate-200 hover:text-slate-50">Logout</p>
                     ) : (

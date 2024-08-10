@@ -30,18 +30,6 @@ const PokemonForm: FunctionComponent<Props> = ({ pokemon }) => {
         },
     });
 
-    useEffect(() => {
-        if (pokemon) {
-            setFormPokemon({
-                name: { value: pokemon.name, isValid: true },
-                hp: { value: pokemon.hp, isValid: true },
-                cp: { value: pokemon.cp, isValid: true },
-                types: { value: pokemon.types, isValid: true },
-                picture: { value: pokemon.picture, isValid: true }
-            });
-        }
-    }, []);
-
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         validateFormPokemon(e, formPokemon, setFormPokemon);
     };

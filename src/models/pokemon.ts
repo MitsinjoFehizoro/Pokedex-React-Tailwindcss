@@ -19,6 +19,6 @@ export default class Pokemon {
     this.cp = cp;
     this.name = name
     this.picture = picture
-    this.types = types
+    this.types =  types
   }
 }
