@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect, useState } from "react";
+import React, { FunctionComponent, useState } from "react";
 import Pokemon from "../models/pokemon";
 import InputForm from "./input-form";
 import {
